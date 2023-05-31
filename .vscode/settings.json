@@ -7,7 +7,7 @@
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
 	},
 	"[typescriptreact]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"typescript.preferences.importModuleSpecifier": "non-relative",
 	"files.exclude": {
