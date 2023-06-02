@@ -9,6 +9,15 @@
     },
     "icon": "./assets/icon.png",
     "name": "ei-nerds",
-    "slug": "ei-nerds"
+    "slug": "ei-nerds",
+    "extra": {
+      "eas": {
+        "projectId": "3e10a97e-e993-4c90-b0a4-9310aa97cb60"
+      }
+    },
+    "owner": "gabrielgsv",
+    "android": {
+      "package": "com.gabrielgsv.einerds"
+    }
   }
 }

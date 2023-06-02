@@ -10,6 +10,7 @@ npm-debug.*
 *.orig.*
 web-build/
 .yarn
+utils/env.ts
 
 # macOS
 .DS_Store
