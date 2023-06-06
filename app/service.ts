@@ -1,12 +1,14 @@
 import api from "../utils/api";
 
-export function getPopularMovies() {
+export function getPopularMovies(page: number, search: string) {
+  const url = search.length > 0 ? "/search/movie" : "/movie/popular";
   return api
-    .get("movie/popular", {
+    .get(url, {
       params: {
         include_adult: false,
         language: "pt-BR",
-        page: 1,
+        page,
+        query: search,
         sort_by: "popularity.desc",
       },
     })
