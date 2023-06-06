@@ -1,23 +1,26 @@
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import { useRouter } from "expo-router";
-import { Card, H3, Image, XStack, YStack } from "tamagui";
+import { Dimensions } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { H3, Spinner, YStack } from "tamagui";
 
 import Header from "../components/Header";
-import useSelectContent, { SelectType } from "../store/useSelectContent";
-import { API_IMAGE_URL } from "../utils/env";
+import PanelCard from "../components/PanelCard";
+import { SelectType } from "../store/useSelectContent";
 
 import { getPopularMovies } from "./service";
 
 export default function Home() {
   const [movies, setMovies] = useState<SelectType[]>([]);
 
-  const router = useRouter();
-  const setSelect = useSelectContent((state) => state.setSelect);
-
   useEffect(() => {
     getPopularMovies().then((res) => setMovies(res.results));
   }, []);
+
+  const getNumColumns = () => {
+    const { width } = Dimensions.get("window");
+    const numColumns = Math.floor(width / 144);
+    return numColumns;
+  };
 
   return (
     <>
@@ -26,36 +29,17 @@ export default function Home() {
       <YStack m="$4" als="center">
         <H3 mb="$3">Filmes</H3>
 
-        <ScrollView>
-          <XStack flexWrap="wrap" jc="space-around" gap="$3">
-            {movies?.map((movie) => (
-              <Card
-                key={movie.id}
-                elevate
-                w="$12"
-                h="$15"
-                borderRadius={20}
-                onPress={() => {
-                  setSelect(movie);
-                  router.push("/detail");
-                }}
-              >
-                <Card.Background>
-                  <Image
-                    resizeMode="contain"
-                    alignSelf="center"
-                    width={150}
-                    height={200}
-                    borderRadius={20}
-                    source={{
-                      uri: `${API_IMAGE_URL}/${movie.poster_path}`,
-                    }}
-                  />
-                </Card.Background>
-              </Card>
-            ))}
-          </XStack>
-        </ScrollView>
+        {movies.length > 0 ? (
+          <FlatList
+            data={movies}
+            keyExtractor={(item) => item?.id?.toString()}
+            renderItem={(item) => <PanelCard item={item.item} />}
+            showsVerticalScrollIndicator={false}
+            numColumns={getNumColumns()}
+          />
+        ) : (
+          <Spinner size="large" color="$gray11" />
+        )}
       </YStack>
     </>
   );
