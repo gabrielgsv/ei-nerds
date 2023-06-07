@@ -7,6 +7,7 @@ export type SelectType = {
   id: number;
   original_language: string;
   original_title: string;
+  original_name: string;
   overview: string;
   popularity: number;
   poster_path: string;
@@ -19,7 +20,9 @@ export type SelectType = {
 
 interface SelectContent {
   select: SelectType;
-  setSelect: (select) => void;
+  type: string;
+  setSelect: (select: SelectType) => void;
+  setType: (type: string) => void;
 }
 
 const useSelectContent = create<SelectContent>()((set) => ({
@@ -30,6 +33,7 @@ const useSelectContent = create<SelectContent>()((set) => ({
     id: 0,
     original_language: "",
     original_title: "",
+    original_name: "",
     overview: "",
     popularity: 0,
     poster_path: "",
@@ -39,9 +43,14 @@ const useSelectContent = create<SelectContent>()((set) => ({
     vote_average: 0,
     vote_count: 0,
   },
+  type: "movie",
   setSelect: (select) =>
     set(() => ({
       select,
+    })),
+  setType: (type) =>
+    set(() => ({
+      type,
     })),
 }));
 
