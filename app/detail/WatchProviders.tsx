@@ -4,9 +4,9 @@ import { View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { H5, Image, Square, Text } from "tamagui";
 
-import { SelectType } from "../../store/useSelectContent";
+import useSelectContent, { SelectType } from "../../store/useSelectContent";
 import { API_IMAGE_URL } from "../../utils/env";
-import { getProviderMovie } from "../service";
+import { getProvider } from "../service";
 
 export default function WatchProviders({ select }: { select: SelectType }) {
   type Item = {
@@ -16,9 +16,10 @@ export default function WatchProviders({ select }: { select: SelectType }) {
   };
 
   const [providerData, setProviderData] = useState<Item[]>([]);
+  const type = useSelectContent((state) => state.type);
 
   useEffect(() => {
-    getProviderMovie(select.id).then((res) => setProviderData(res || []));
+    getProvider(select.id, type).then((res) => setProviderData(res || []));
   }, []);
 
   const RenderProviders = ({ item }: { item: Item }) => (
