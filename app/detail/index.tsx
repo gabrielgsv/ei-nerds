@@ -16,7 +16,7 @@ export default function Detail() {
 
   return (
     <>
-      <Header title="Sobre" />
+      <Header title="Sobre" back />
       <ScrollView>
         <YStack m="$4" alignItems="center" gap="$3">
           <Poster select={select} />

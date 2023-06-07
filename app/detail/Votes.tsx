@@ -3,8 +3,8 @@ import { Circle, H4, H6, XStack } from "tamagui";
 import { SelectType } from "../../store/useSelectContent";
 
 export default function Votes({ select }: { select: SelectType }) {
+  const vote = select.vote_average;
   function voteColor() {
-    const vote = select.vote_average;
     switch (true) {
       case vote > 7:
         return "#34a853";
@@ -27,7 +27,7 @@ export default function Votes({ select }: { select: SelectType }) {
     >
       <H6 mx="$3">Avaliação dos usuários:</H6>
       <Circle size="$5" bg={voteColor()}>
-        <H4 col="#fff">{select.vote_average * 10}</H4>
+        <H4 col="#fff">{Math.round(vote * 10)}</H4>
       </Circle>
     </XStack>
   );

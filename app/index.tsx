@@ -1,61 +1,63 @@
 import { useEffect, useState } from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import { useRouter } from "expo-router";
-import { Card, H3, Image, XStack, YStack } from "tamagui";
+import { Dimensions } from "react-native";
+import { YStack } from "tamagui";
 
 import Header from "../components/Header";
-import useSelectContent, { SelectType } from "../store/useSelectContent";
-import { API_IMAGE_URL } from "../utils/env";
+import List from "../components/List";
+import SearchInput from "../components/SearchInput";
+import { SelectType } from "../store/useSelectContent";
 
 import { getPopularMovies } from "./service";
 
 export default function Home() {
   const [movies, setMovies] = useState<SelectType[]>([]);
+  const [page, setPage] = useState(0);
+  const [totalPage, setTotalPage] = useState(1);
+  const [search, setSearch] = useState("");
 
-  const router = useRouter();
-  const setSelect = useSelectContent((state) => state.setSelect);
+  const { width } = Dimensions.get("window");
 
-  useEffect(() => {
-    getPopularMovies().then((res) => setMovies(res.results));
-  }, []);
+  useEffect(() => getMovies(1), []);
+
+  function getMovies(newPage: number) {
+    if (newPage > totalPage) return;
+    setPage(newPage);
+    getPopularMovies(newPage, search).then((res) => {
+      if (search.length > 0 && newPage === 1) {
+        setMovies(res.results);
+      } else {
+        setMovies((value) => [...value, ...res.results]);
+      }
+      setTotalPage(res.total_pages);
+    });
+  }
+
+  const getNumColumns = () => {
+    const numColumns = Math.floor(width / 144);
+    return numColumns;
+  };
 
   return (
     <>
-      <Header title="Lançamentos" />
+      <Header title="Filmes" />
 
-      <YStack m="$4" als="center">
-        <H3 mb="$3">Filmes</H3>
+      <YStack m="$4" als="center" width={width} px="$4">
+        <SearchInput
+          size="$3"
+          search={search}
+          setSearch={setSearch}
+          getMovies={getMovies}
+          setMovies={setMovies}
+          setPage={setPage}
+        />
 
-        <ScrollView>
-          <XStack flexWrap="wrap" jc="space-around" gap="$3">
-            {movies?.map((movie) => (
-              <Card
-                key={movie.id}
-                elevate
-                w="$12"
-                h="$15"
-                borderRadius={20}
-                onPress={() => {
-                  setSelect(movie);
-                  router.push("/detail");
-                }}
-              >
-                <Card.Background>
-                  <Image
-                    resizeMode="contain"
-                    alignSelf="center"
-                    width={150}
-                    height={200}
-                    borderRadius={20}
-                    source={{
-                      uri: `${API_IMAGE_URL}/${movie.poster_path}`,
-                    }}
-                  />
-                </Card.Background>
-              </Card>
-            ))}
-          </XStack>
-        </ScrollView>
+        <List
+          data={movies}
+          getData={getMovies}
+          getNumColumns={getNumColumns}
+          page={page}
+          totalPage={totalPage}
+        />
       </YStack>
     </>
   );
