@@ -29,7 +29,7 @@ export default function List({
         showsVerticalScrollIndicator={false}
         numColumns={getNumColumns()}
         onEndReached={() => getData(page + 1)}
-        onEndReachedThreshold={0.5}
+        onEndReachedThreshold={0.1}
         ListFooterComponent={() =>
           page < totalPage && <Spinner size="large" color="$gray11" />
         }
