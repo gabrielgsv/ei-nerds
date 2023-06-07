@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Dimensions } from "react-native";
 import { YStack } from "tamagui";
 
@@ -6,7 +6,7 @@ import Header from "../../../components/Header";
 import List from "../../../components/List";
 import SearchInput from "../../../components/SearchInput";
 import { SelectType } from "../../../store/useSelectContent";
-import { getPopularMovies } from "../../service";
+import { getPopular } from "../../service";
 
 export default function Movies() {
   const [movies, setMovies] = useState<SelectType[]>([]);
@@ -16,12 +16,10 @@ export default function Movies() {
 
   const { width } = Dimensions.get("window");
 
-  useEffect(() => getMovies(1), []);
-
   function getMovies(newPage: number) {
     if (newPage > totalPage) return;
     setPage(newPage);
-    getPopularMovies(newPage, search).then((res) => {
+    getPopular(newPage, search, "movie").then((res) => {
       if (search.length > 0 && newPage === 1) {
         setMovies(res.results);
       } else {
@@ -40,7 +38,7 @@ export default function Movies() {
     <>
       <Header title="Filmes" />
 
-      <YStack m="$4" als="center" width={width} px="$4">
+      <YStack m="$4" als="center" width={width} pb="$6" px="$4">
         <SearchInput
           size="$3"
           search={search}

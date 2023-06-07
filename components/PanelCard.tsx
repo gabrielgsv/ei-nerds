@@ -1,4 +1,4 @@
-import { useRouter } from "expo-router";
+import { usePathname, useRouter } from "expo-router";
 import { Card, Image } from "tamagui";
 
 import useSelectContent, { SelectType } from "../store/useSelectContent";
@@ -6,7 +6,10 @@ import { API_IMAGE_URL } from "../utils/env";
 
 export default function PanelCard({ item }: { item: SelectType }) {
   const setSelect = useSelectContent((state) => state.setSelect);
+  const setType = useSelectContent((state) => state.setType);
   const router = useRouter();
+  const currentRoute = usePathname(); // "/movies" or "/series"
+
   return (
     <>
       <Card
@@ -18,7 +21,8 @@ export default function PanelCard({ item }: { item: SelectType }) {
         borderRadius={20}
         onPress={() => {
           setSelect(item);
-          router.push("/detail");
+          setType(currentRoute === "/series" ? "tv" : "movie");
+          router.push(`/detail?route=${currentRoute}`);
         }}
       >
         <Card.Background>

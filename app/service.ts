@@ -1,7 +1,7 @@
 import api from "../utils/api";
 
-export function getPopularMovies(page: number, search: string) {
-  const url = search.length > 0 ? "/search/movie" : "/movie/popular";
+export function getPopular(page: number, search: string, urlName: string) {
+  const url = search.length > 0 ? `/search/${urlName}` : `/${urlName}/popular`;
   return api
     .get(url, {
       params: {
@@ -21,9 +21,9 @@ export function getPopularMovies(page: number, search: string) {
     });
 }
 
-export function getCreditsMovie(movieId: number) {
+export function getCredits(id: number, type: string) {
   return api
-    .get(`movie/${movieId}/credits`, {
+    .get(`${type}/${id}/credits`, {
       params: {
         language: "pt-BR",
       },
@@ -37,7 +37,7 @@ export function getCreditsMovie(movieId: number) {
     });
 }
 
-export function getProviderMovie(movieId: number) {
+export function getProvider(id: number, type: string) {
   type ProviderMovie = {
     BR: {
       flatrate: [];
@@ -46,7 +46,7 @@ export function getProviderMovie(movieId: number) {
   };
 
   return api
-    .get(`movie/${movieId}/watch/providers`, {
+    .get(`${type}/${id}/watch/providers`, {
       params: {
         language: "pt-BR",
       },

@@ -4,9 +4,9 @@ import { View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import { H5, Image, Spinner, Square, Text } from "tamagui";
 
-import { SelectType } from "../../store/useSelectContent";
+import useSelectContent, { SelectType } from "../../store/useSelectContent";
 import { API_IMAGE_URL } from "../../utils/env";
-import { getCreditsMovie } from "../service";
+import { getCredits } from "../service";
 
 export default function Credits({ select }: { select: SelectType }) {
   type Item = {
@@ -17,9 +17,10 @@ export default function Credits({ select }: { select: SelectType }) {
   };
 
   const [creditsData, setCreditsData] = useState<Item[]>([]);
+  const type = useSelectContent((state) => state.type);
 
   useEffect(() => {
-    getCreditsMovie(select.id).then((res) => setCreditsData(res));
+    getCredits(select.id, type).then((res) => setCreditsData(res));
   }, []);
 
   const RenderCredits = ({ item }: { item: Item }) => (
