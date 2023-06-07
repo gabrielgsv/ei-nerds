@@ -11,6 +11,7 @@ type Props = {
   setSearch: (search: string) => void;
   getMovies: (page: number) => void;
   setMovies: (movies: SelectType[]) => void;
+  setPage: (page: number) => void;
 };
 export default function SearchInput({
   size,
@@ -18,11 +19,15 @@ export default function SearchInput({
   setSearch,
   getMovies,
   setMovies,
+  setPage,
 }: Props) {
   const debounceSearch = useDebounce(search, 500);
 
   useEffect(() => {
-    if (debounceSearch.length === 0) setMovies([]);
+    if (debounceSearch.length === 0) {
+      setMovies([]);
+      setPage(1);
+    }
     getMovies(1);
   }, [debounceSearch]);
 
