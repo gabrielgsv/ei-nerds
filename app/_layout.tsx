@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
@@ -24,19 +24,17 @@ export default function Layout() {
 
   return (
     <TamaguiProvider config={config}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaProvider>
         <Suspense fallback={<Text>Loading...</Text>}>
           <Theme name={theme ? "dark" : "light"}>
             <ThemeProvider value={theme ? darkTheme() : lightTheme()}>
-              <Stack
-                screenOptions={{
-                  headerShown: true,
-                }}
-              />
+              <Stack>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              </Stack>
             </ThemeProvider>
           </Theme>
         </Suspense>
-      </SafeAreaView>
+      </SafeAreaProvider>
       <StatusBar
         style={theme ? "light" : "dark"}
         backgroundColor={theme ? "#212121" : "#e9e7e7"}
