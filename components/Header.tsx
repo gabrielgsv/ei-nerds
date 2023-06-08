@@ -1,3 +1,4 @@
+import { StatusBar } from "react-native";
 import { ArrowLeft } from "@tamagui/lucide-icons";
 import { useRouter } from "expo-router";
 import { H4, Square, XStack } from "tamagui";
@@ -14,13 +15,14 @@ type Props = {
 export default function Header({ title, back }: Props) {
   const theme = useThemeIsDark((state) => state.theme);
   const router = useRouter();
+  const statusBarHeight = StatusBar.currentHeight;
 
   return (
     <XStack
-      h="$5"
       jc="space-between"
       ai="center"
       px="$6"
+      pt={statusBarHeight + 10}
       bg={theme ? "#212121" : "#e9e7e7"}
     >
       {back && <ArrowLeft size="$2" onPress={() => router.back()} />}
