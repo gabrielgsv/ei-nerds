@@ -28,7 +28,7 @@ export default function Layout() {
         <Suspense fallback={<Text>Loading...</Text>}>
           <Theme name={theme ? "dark" : "light"}>
             <ThemeProvider value={theme ? darkTheme() : lightTheme()}>
-              <Stack>
+              <Stack screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
               </Stack>
             </ThemeProvider>

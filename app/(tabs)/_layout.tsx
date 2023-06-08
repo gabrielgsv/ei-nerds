@@ -11,7 +11,7 @@ export default function Layout() {
     <>
       <Tabs
         screenOptions={{
-          headerShown: true,
+          headerShown: false,
           title: "",
         }}
       >
