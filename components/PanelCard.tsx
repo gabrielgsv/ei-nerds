@@ -22,7 +22,7 @@ export default function PanelCard({ item }: { item: SelectType }) {
         onPress={() => {
           setSelect(item);
           setType(currentRoute === "/series" ? "tv" : "movie");
-          router.push(`/detail?route=${currentRoute}`);
+          router.push(`/detail`);
         }}
       >
         <Card.Background>

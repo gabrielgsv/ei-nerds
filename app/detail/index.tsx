@@ -4,6 +4,7 @@ import { YStack } from "tamagui";
 import Header from "../../components/Header";
 import useSelectContent from "../../store/useSelectContent";
 
+import BannerAds from "./BannerAds";
 import Credits from "./Credits";
 import Overview from "./Overview";
 import Poster from "./Poster";
@@ -19,6 +20,7 @@ export default function Detail() {
       <Header title="Sobre" back />
       <ScrollView>
         <YStack m="$4" alignItems="center" gap="$3">
+          <BannerAds />
           <Poster select={select} />
           <Title select={select} />
           <Votes select={select} />
