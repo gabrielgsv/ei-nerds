@@ -37,7 +37,7 @@ export default function SearchInput({
 
   return (
     <>
-      <XStack alignItems="center" space="$2" mb="$3">
+      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
         <Input
           flex={1}
           size={size}
