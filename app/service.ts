@@ -1,7 +1,12 @@
 import api from "../utils/api";
 
-export function getPopular(page: number, search: string, urlName: string) {
-  const url = search.length > 0 ? `/search/${urlName}` : `/${urlName}/popular`;
+export function getPopular(
+  page: number,
+  search: string,
+  urlName: string,
+  sort: string
+) {
+  const url = search.length > 0 ? `/search/${urlName}` : `/${urlName}/${sort}`;
   return api
     .get(url, {
       params: {

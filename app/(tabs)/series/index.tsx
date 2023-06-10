@@ -19,7 +19,7 @@ export default function Series() {
   function getSeries(newPage: number) {
     if (newPage > totalPage) return;
     setPage(newPage);
-    getPopular(newPage, search, "tv").then((res) => {
+    getPopular(newPage, search, "tv", "top_rated").then((res) => {
       if (search.length > 0 && newPage === 1) {
         setSeries(res.results);
       } else {
@@ -37,16 +37,16 @@ export default function Series() {
   return (
     <>
       <Header title="Séries" />
-      <YStack m="$4" als="center" width={width} pb="$6" px="$4">
-        <SearchInput
-          size="$3"
-          search={search}
-          setSearch={setSearch}
-          getMovies={getSeries}
-          setMovies={setSeries}
-          setPage={setPage}
-        />
+      <SearchInput
+        size="$3"
+        search={search}
+        setSearch={setSearch}
+        getMovies={getSeries}
+        setMovies={setSeries}
+        setPage={setPage}
+      />
 
+      <YStack m="$4" als="center" pb="$6" px="$4">
         <List
           data={series}
           getData={getSeries}
