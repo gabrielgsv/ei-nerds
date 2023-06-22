@@ -13,12 +13,12 @@ const useThemeIsDark = create<ThemeIsDark>()(
       theme: false,
       toggleTheme: (checked) =>
         set(() => ({
-          theme: checked
-        }))
+          theme: checked,
+        })),
     }),
     {
       name: "theme",
-      storage: createJSONStorage(() => AsyncStorage)
+      storage: createJSONStorage(() => AsyncStorage),
     }
   )
 );

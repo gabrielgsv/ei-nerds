@@ -46,15 +46,13 @@ export default function Series() {
         setPage={setPage}
       />
 
-      <YStack m="$4" als="center" pb="$6" px="$4">
-        <List
-          data={series}
-          getData={getSeries}
-          getNumColumns={getNumColumns}
-          page={page}
-          totalPage={totalPage}
-        />
-      </YStack>
+      <List
+        data={series}
+        getData={getSeries}
+        getNumColumns={getNumColumns}
+        page={page}
+        totalPage={totalPage}
+      />
     </>
   );
 }

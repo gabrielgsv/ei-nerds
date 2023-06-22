@@ -1,5 +1,5 @@
 import { FlatList } from "react-native-gesture-handler";
-import { Spinner } from "tamagui";
+import { Spinner, YStack } from "tamagui";
 
 import { SelectType } from "../store/useSelectContent";
 
@@ -21,7 +21,7 @@ export default function List({
   getData,
 }: Props) {
   return (
-    <>
+    <YStack als="center" jc="center" pb="$19" px="$4">
       <FlatList
         data={data}
         keyExtractor={(item, index) => index.toString()}
@@ -34,6 +34,6 @@ export default function List({
           page < totalPage && <Spinner size="large" color="$gray11" />
         }
       />
-    </>
+    </YStack>
   );
 }

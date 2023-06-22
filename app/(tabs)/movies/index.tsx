@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Dimensions } from "react-native";
-import { BannerAd, TestIds } from "react-native-google-mobile-ads";
 import { YStack } from "tamagui";
 
 import Header from "../../../components/Header";
@@ -48,15 +47,13 @@ export default function Movies() {
         setPage={setPage}
       />
 
-      <YStack als="center" jc="center" pb="$6" px="$4">
-        <List
-          data={movies}
-          getData={getMovies}
-          getNumColumns={getNumColumns}
-          page={page}
-          totalPage={totalPage}
-        />
-      </YStack>
+      <List
+        data={movies}
+        getData={getMovies}
+        getNumColumns={getNumColumns}
+        page={page}
+        totalPage={totalPage}
+      />
     </>
   );
 }
