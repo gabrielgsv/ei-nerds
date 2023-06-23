@@ -42,9 +42,20 @@ export function getCredits(id: number, type: string) {
     });
 }
 
+export type Item = {
+  provider_id: number;
+  provider_name: string;
+  logo_path: string;
+};
+
+export type ProviderRes = {
+  providers: Item[];
+  link: string;
+};
 export function getProvider(id: number, type: string) {
   type ProviderMovie = {
     BR: {
+      link: string;
       flatrate: [];
       rent: [];
     };
@@ -63,8 +74,13 @@ export function getProvider(id: number, type: string) {
       if (BR) {
         const flatrate = BR.flatrate || [];
         const rent = BR.rent || [];
+        const link = BR.link || "";
 
-        return [...flatrate, ...rent];
+        const response: ProviderRes = {
+          providers: [...flatrate, ...rent],
+          link,
+        };
+        return response;
       }
 
       return [];

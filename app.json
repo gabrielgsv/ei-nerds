@@ -3,7 +3,6 @@
     "scheme": "tamagui-app",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "backgroundColor": "#E0E8EF",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
@@ -17,7 +16,8 @@
     },
     "owner": "gabrielgsv",
     "android": {
-      "package": "com.gabrielgsv.einerds"
+      "package": "com.gabrielgsv.einerds",
+      "versionCode": 2
     }
   },
   "react-native-google-mobile-ads": {

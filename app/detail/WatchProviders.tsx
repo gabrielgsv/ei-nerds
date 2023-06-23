@@ -2,41 +2,47 @@
 import { useEffect, useState } from "react";
 import { View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
+import { Link } from "expo-router";
 import { H5, Image, Square, Text } from "tamagui";
 
 import useSelectContent, { SelectType } from "../../store/useSelectContent";
 import { API_IMAGE_URL } from "../../utils/env";
-import { getProvider } from "../service";
+import { getProvider, Item } from "../service";
 
 export default function WatchProviders({ select }: { select: SelectType }) {
-  type Item = {
-    provider_id: number;
-    provider_name: string;
-    logo_path: string;
+  type Response = {
+    providers: Item[];
+    link: string;
   };
 
   const [providerData, setProviderData] = useState<Item[]>([]);
+  const [link, setLink] = useState<string>("");
   const type = useSelectContent((state) => state.type);
 
   useEffect(() => {
-    getProvider(select.id, type).then((res) => setProviderData(res || []));
+    getProvider(select.id, type).then((res: Response) => {
+      setProviderData(res.providers || []);
+      setLink(res.link);
+    });
   }, []);
 
   const RenderProviders = ({ item }: { item: Item }) => (
-    <Square w="$11" p="$2" bg="$gray8" br="$4">
-      <Image
-        w={70}
-        h={70}
-        br="$6"
-        source={{
-          uri: `${API_IMAGE_URL}/${item.logo_path}`,
-        }}
-      />
+    <Link href={link}>
+      <Square w="$11" p="$2" bg="$gray8" br="$4">
+        <Image
+          w={70}
+          h={70}
+          br="$6"
+          source={{
+            uri: `${API_IMAGE_URL}/${item.logo_path}`,
+          }}
+        />
 
-      <Text mt="$2" fontSize="$1">
-        {item.provider_name}
-      </Text>
-    </Square>
+        <Text mt="$2" fontSize="$1">
+          {item.provider_name}
+        </Text>
+      </Square>
+    </Link>
   );
 
   return (

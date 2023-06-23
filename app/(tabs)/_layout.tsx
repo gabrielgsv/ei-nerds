@@ -13,6 +13,7 @@ export default function Layout() {
         screenOptions={{
           headerShown: false,
           title: "",
+          unmountOnBlur: true,
         }}
       >
         <Tabs.Screen

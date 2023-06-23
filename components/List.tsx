@@ -21,7 +21,7 @@ export default function List({
   getData,
 }: Props) {
   return (
-    <YStack als="center" jc="center" pb="$19" px="$4">
+    <YStack als="center" jc="center" pb={140} px="$4">
       <FlatList
         data={data}
         keyExtractor={(item, index) => index.toString()}
