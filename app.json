@@ -3,12 +3,24 @@
     "scheme": "tamagui-app",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "backgroundColor": "#ddffe2",
       "image": "./assets/splash.png",
       "resizeMode": "contain"
     },
     "icon": "./assets/icon.png",
     "name": "ei-nerds",
-    "slug": "ei-nerds"
+    "slug": "ei-nerds",
+    "extra": {
+      "eas": {
+        "projectId": "3e10a97e-e993-4c90-b0a4-9310aa97cb60"
+      }
+    },
+    "owner": "gabrielgsv",
+    "android": {
+      "package": "com.gabrielgsv.einerds",
+      "versionCode": 2
+    }
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-9811756218598664~2534372146"
   }
 }

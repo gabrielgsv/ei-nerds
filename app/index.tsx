@@ -1,9 +1,5 @@
-import { H3 } from "tamagui";
+import { Redirect } from "expo-router";
 
-export default function Home() {
-  return (
-    <>
-      <H3>Filmes, series e muito mais</H3>
-    </>
-  );
+export default function StartPage() {
+  return <Redirect href="/movies" />;
 }

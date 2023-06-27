@@ -1,24 +1,21 @@
 import { Suspense } from "react";
-import { useColorScheme } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider
-} from "@react-navigation/native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { TamaguiProvider, Text, Theme } from "tamagui";
 
+import useThemeIsDark from "../store/useThemeIsDark";
 import config from "../tamagui.config";
+import { darkTheme, lightTheme } from "../utils/themes";
 
 export default function Layout() {
-  const colorScheme = useColorScheme();
+  const theme = useThemeIsDark((state) => state.theme);
 
   const [loaded] = useFonts({
     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
-    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf")
+    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
   });
 
   if (!loaded) {
@@ -27,24 +24,20 @@ export default function Layout() {
 
   return (
     <TamaguiProvider config={config}>
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaProvider>
         <Suspense fallback={<Text>Loading...</Text>}>
-          <Theme name={colorScheme}>
-            <ThemeProvider
-              value={colorScheme === "light" ? DefaultTheme : DarkTheme}
-            >
-              <Stack
-                screenOptions={{
-                  headerShown: false
-                }}
-              />
+          <Theme name={theme ? "dark" : "light"}>
+            <ThemeProvider value={theme ? darkTheme() : lightTheme()}>
+              <Stack screenOptions={{ headerShown: false }}>
+                <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+              </Stack>
             </ThemeProvider>
           </Theme>
         </Suspense>
-      </SafeAreaView>
+      </SafeAreaProvider>
       <StatusBar
-        style="light"
-        backgroundColor="#000000"
+        style={theme ? "light" : "dark"}
+        backgroundColor={theme ? "#212121" : "#e9e7e7"}
       />
     </TamaguiProvider>
   );
