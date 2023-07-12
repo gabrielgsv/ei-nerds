@@ -1,18 +1,10 @@
-import {
-  BannerAd,
-  BannerAdSize,
-  TestIds,
-} from "react-native-google-mobile-ads";
+import { BannerAd, BannerAdSize } from "react-native-google-mobile-ads";
 
 export default function BannerAds() {
-  const adUnitId = __DEV__
-    ? TestIds.BANNER
-    : "ca-app-pub-9811756218598664~2534372146";
-
   return (
     <>
       <BannerAd
-        unitId={adUnitId}
+        unitId={"ca-app-pub-9811756218598664/5846909116"}
         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
         requestOptions={{
           requestNonPersonalizedAdsOnly: true,

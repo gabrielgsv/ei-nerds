@@ -17,7 +17,7 @@
     "owner": "gabrielgsv",
     "android": {
       "package": "com.gabrielgsv.einerds",
-      "versionCode": 2
+      "versionCode": 5
     }
   },
   "react-native-google-mobile-ads": {
