@@ -37,32 +37,30 @@ export default function SearchInput({
 
   return (
     <>
-      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
-        <Input
-          flex={1}
+      <Input
+        flex={1}
+        size={size}
+        br="$10"
+        borderColor="$gray10"
+        borderWidth={0.5}
+        placeholderTextColor={"$gray12"}
+        ta="center"
+        value={search}
+        onChangeText={(text) => {
+          handleSearch(text);
+        }}
+        placeholder={"Pesquisar"}
+      />
+      {search.length > 0 && (
+        <Button
           size={size}
           br="$10"
-          borderColor="$gray10"
-          borderWidth={0.5}
-          placeholderTextColor={"$gray12"}
-          ta="center"
-          value={search}
-          onChangeText={(text) => {
-            handleSearch(text);
-          }}
-          placeholder={"Pesquisar"}
+          bg="$gray10"
+          onPress={() => setSearch("")}
+          w="$3"
+          icon={<X size="$1" />}
         />
-        {search.length > 0 && (
-          <Button
-            size={size}
-            br="$10"
-            bg="$gray10"
-            onPress={() => setSearch("")}
-            w="$3"
-            icon={<X size="$1" />}
-          />
-        )}
-      </XStack>
+      )}
     </>
   );
 }
