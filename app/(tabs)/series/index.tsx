@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Dimensions } from "react-native";
-import { YStack } from "tamagui";
+import { XStack } from "tamagui";
 
 import Header from "../../../components/Header";
 import List from "../../../components/List";
@@ -37,14 +37,16 @@ export default function Series() {
   return (
     <>
       <Header title="Séries" />
-      <SearchInput
-        size="$3"
-        search={search}
-        setSearch={setSearch}
-        getMovies={getSeries}
-        setMovies={setSeries}
-        setPage={setPage}
-      />
+      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
+        <SearchInput
+          size="$3"
+          search={search}
+          setSearch={setSearch}
+          getMovies={getSeries}
+          setMovies={setSeries}
+          setPage={setPage}
+        />
+      </XStack>
 
       <List
         data={series}
