@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Dimensions } from "react-native";
-import { YStack } from "tamagui";
+import { XStack } from "tamagui";
 
+import FilterButton from "../../../components/Filter";
 import Header from "../../../components/Header";
 import List from "../../../components/List";
 import SearchInput from "../../../components/SearchInput";
@@ -38,14 +39,17 @@ export default function Movies() {
     <>
       <Header title="Filmes" />
 
-      <SearchInput
-        size="$3"
-        search={search}
-        setSearch={setSearch}
-        getMovies={getMovies}
-        setMovies={setMovies}
-        setPage={setPage}
-      />
+      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
+        <FilterButton />
+        <SearchInput
+          size="$3"
+          search={search}
+          setSearch={setSearch}
+          getMovies={getMovies}
+          setMovies={setMovies}
+          setPage={setPage}
+        />
+      </XStack>
 
       <List
         data={movies}
