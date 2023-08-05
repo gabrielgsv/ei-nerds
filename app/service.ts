@@ -4,17 +4,23 @@ export function getPopular(
   page: number,
   search: string,
   urlName: string,
-  sort: string
+  sort: string,
+  genderId: string | null,
+  sortId: string | null
 ) {
   const url = search.length > 0 ? `/search/${urlName}` : `/${urlName}/${sort}`;
+  console.log("genderId", genderId);
+  console.log("sortId", sortId);
   return api
     .get(url, {
       params: {
         include_adult: false,
+        include_video: false,
         language: "pt-BR",
         page,
         query: search,
-        sort_by: "popularity.desc",
+        sort_by: sortId || "popularity.desc",
+        with_genres: genderId,
       },
     })
     .then((response) => {

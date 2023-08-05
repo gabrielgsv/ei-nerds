@@ -2,21 +2,28 @@ import { create } from "zustand";
 
 interface SelectFilter {
   genderId: string | null;
-  setGenderId: (value: string) => void;
   sortId: string | null;
+  filteredMovie: boolean;
+  setGenderId: (value: string) => void;
   setSortId: (value: string) => void;
+  setFilteredMovie: (value: boolean) => void;
 }
 
 const useSelectFilter = create<SelectFilter>()((set) => ({
   genderId: null,
+  sortId: null,
+  filteredMovie: false,
   setGenderId: (value) =>
     set(() => ({
       genderId: value,
     })),
-  sortId: null,
   setSortId: (value) =>
     set(() => ({
       sortId: value,
+    })),
+  setFilteredMovie: (value) =>
+    set(() => ({
+      filteredMovie: value,
     })),
 }));
 

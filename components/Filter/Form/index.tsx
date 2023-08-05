@@ -1,14 +1,18 @@
 import { Button, Dialog, Fieldset, Label, XStack } from "tamagui";
 
+import { getMovies } from "../../../app/(tabs)/movies/services";
+import useMovieList from "../../../app/(tabs)/movies/store/useMovieList";
+import useSelectFilter from "../../../store/useSelectFilter";
 import SelectList from "../../SelectList";
 
-import useSelectFilter from "./store/useSelectFilter";
 import movie_genres from "./movie_genres.json";
 import movie_sort from "./movie_sort.json";
 
 export default function Form() {
-  const genderId = useSelectFilter((state) => state.genderId);
-  const sortId = useSelectFilter((state) => state.sortId);
+  const { totalPage, search, setPage, setMovies, setTotalPage } = useMovieList(
+    (state) => state
+  );
+  const { genderId, sortId } = useSelectFilter((state) => state);
 
   const setGenderId = useSelectFilter((state) => state.setGenderId);
   const setSortId = useSelectFilter((state) => state.setSortId);
@@ -44,7 +48,25 @@ export default function Form() {
 
       <XStack alignSelf="flex-end" space>
         <Dialog.Close displayWhenAdapted asChild>
-          <Button theme="alt1" aria-label="Close">
+          <Button
+            theme="alt1"
+            aria-label="Close"
+            onPress={() => {
+              setMovies([]);
+              setPage(1);
+
+              getMovies(
+                1,
+                totalPage,
+                search,
+                genderId,
+                sortId,
+                setPage,
+                setMovies,
+                setTotalPage
+              );
+            }}
+          >
             Filtrar
           </Button>
         </Dialog.Close>

@@ -1,26 +1,21 @@
 import { useEffect } from "react";
 import { X } from "@tamagui/lucide-icons";
-import { Button, Input, SizeTokens, XStack } from "tamagui";
+import { Button, Input, SizeTokens } from "tamagui";
 
-import { SelectType } from "../store/useSelectContent";
+import { getMovies } from "../app/(tabs)/movies/services";
+import useMovieList from "../app/(tabs)/movies/store/useMovieList";
+import useSelectFilter from "../store/useSelectFilter";
 import useDebounce from "../utils/useDebounce";
 
 type Props = {
   size: SizeTokens;
-  search: string;
-  setSearch: (search: string) => void;
-  getMovies: (page: number) => void;
-  setMovies: (movies: SelectType[]) => void;
-  setPage: (page: number) => void;
 };
-export default function SearchInput({
-  size,
-  search,
-  setSearch,
-  getMovies,
-  setMovies,
-  setPage,
-}: Props) {
+export default function SearchInput({ size }: Props) {
+  const { totalPage, search, setPage, setSearch, setMovies, setTotalPage } =
+    useMovieList((state) => state);
+
+  const { genderId, sortId } = useSelectFilter((state) => state);
+
   const debounceSearch = useDebounce(search, 500);
 
   useEffect(() => {
@@ -28,7 +23,16 @@ export default function SearchInput({
       setMovies([]);
       setPage(1);
     }
-    getMovies(1);
+    getMovies(
+      1,
+      totalPage,
+      search,
+      genderId,
+      sortId,
+      setPage,
+      setMovies,
+      setTotalPage
+    );
   }, [debounceSearch]);
 
   function handleSearch(text) {
