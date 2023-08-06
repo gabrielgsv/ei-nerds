@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-import { SelectType } from "../../../../store/useSelectContent";
+import { SelectType } from "./useSelectContent";
 
 interface MovieList {
   movies: SelectType[];

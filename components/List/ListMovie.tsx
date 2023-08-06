@@ -1,21 +1,20 @@
 import { FlatList } from "react-native-gesture-handler";
 import { Spinner, YStack } from "tamagui";
 
-import { getMovies } from "../app/(tabs)/movies/services";
-import useMovieList from "../app/(tabs)/movies/store/useMovieList";
-import useSelectFilter from "../store/useSelectFilter";
-
-import PanelCard from "./PanelCard";
+import { getMovies } from "../../app/(tabs)/movies/services";
+import useMovieList from "../../store/useMovieList";
+import useSelectFilter from "../../store/useSelectFilter";
+import PanelCard from "../PanelCard";
 
 type Props = {
   getNumColumns: () => number;
 };
 
-export default function List({ getNumColumns }: Props) {
+export default function ListMovie({ getNumColumns }: Props) {
   const { movies, totalPage, search, page, setPage, setMovies, setTotalPage } =
     useMovieList((state) => state);
 
-  const { genderId, sortId } = useSelectFilter((state) => state);
+  const { movieGenderId, movieSortId } = useSelectFilter((state) => state);
 
   return (
     <YStack als="center" jc="center" pb={140} px="$4">
@@ -30,8 +29,8 @@ export default function List({ getNumColumns }: Props) {
             page + 1,
             totalPage,
             search,
-            genderId,
-            sortId,
+            movieGenderId,
+            movieSortId,
             setPage,
             setMovies,
             setTotalPage

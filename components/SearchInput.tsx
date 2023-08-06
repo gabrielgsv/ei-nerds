@@ -3,7 +3,7 @@ import { X } from "@tamagui/lucide-icons";
 import { Button, Input, SizeTokens } from "tamagui";
 
 import { getMovies } from "../app/(tabs)/movies/services";
-import useMovieList from "../app/(tabs)/movies/store/useMovieList";
+import useMovieList from "../store/useMovieList";
 import useSelectFilter from "../store/useSelectFilter";
 import useDebounce from "../utils/useDebounce";
 
@@ -14,7 +14,7 @@ export default function SearchInput({ size }: Props) {
   const { totalPage, search, setPage, setSearch, setMovies, setTotalPage } =
     useMovieList((state) => state);
 
-  const { genderId, sortId } = useSelectFilter((state) => state);
+  const { movieGenderId, movieSortId } = useSelectFilter((state) => state);
 
   const debounceSearch = useDebounce(search, 500);
 
@@ -27,8 +27,8 @@ export default function SearchInput({ size }: Props) {
       1,
       totalPage,
       search,
-      genderId,
-      sortId,
+      movieGenderId,
+      movieSortId,
       setPage,
       setMovies,
       setTotalPage

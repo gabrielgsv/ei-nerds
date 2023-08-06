@@ -1,46 +1,45 @@
 import { Button, Dialog, Fieldset, Label, XStack } from "tamagui";
 
 import { getMovies } from "../../../app/(tabs)/movies/services";
-import useMovieList from "../../../app/(tabs)/movies/store/useMovieList";
+import useMovieList from "../../../store/useMovieList";
 import useSelectFilter from "../../../store/useSelectFilter";
 import SelectList from "../../SelectList";
+import movie_genres from "../filterFiles/movie_genres.json";
+import movie_sort from "../filterFiles/movie_sort.json";
 
-import movie_genres from "./movie_genres.json";
-import movie_sort from "./movie_sort.json";
-
-export default function Form() {
+export default function FilterFormMovie() {
   const { totalPage, search, setPage, setMovies, setTotalPage } = useMovieList(
     (state) => state
   );
-  const { genderId, sortId } = useSelectFilter((state) => state);
+  const { movieGenderId, movieSortId } = useSelectFilter((state) => state);
 
-  const setGenderId = useSelectFilter((state) => state.setGenderId);
-  const setSortId = useSelectFilter((state) => state.setSortId);
+  const setMovieGenderId = useSelectFilter((state) => state.setMovieGenderId);
+  const setMovieSortId = useSelectFilter((state) => state.setMovieSortId);
 
   const movie_genres_list = movie_genres;
   const movie_sort_list = movie_sort;
 
   return (
     <>
-      <Fieldset space="$4" horizontal>
-        <Label width={160} justifyContent="flex-end" htmlFor="sort">
+      <Fieldset horizontal mb="$4" jc="space-between">
+        <Label mt="$3" htmlFor="sort">
           Gênero:
         </Label>
         <SelectList
-          val={genderId}
-          setVal={setGenderId}
+          val={movieGenderId}
+          setVal={setMovieGenderId}
           items={movie_genres_list}
           title="Gênero"
         />
       </Fieldset>
 
-      <Fieldset space="$4" horizontal>
-        <Label width={160} justifyContent="flex-end" htmlFor="sort">
+      <Fieldset horizontal mb="$4" jc="space-between">
+        <Label mt="$3" justifyContent="flex-end" htmlFor="sort">
           Odernar por:
         </Label>
         <SelectList
-          val={sortId}
-          setVal={setSortId}
+          val={movieSortId}
+          setVal={setMovieSortId}
           items={movie_sort_list}
           title="Ordenar por"
         />
@@ -59,8 +58,8 @@ export default function Form() {
                 1,
                 totalPage,
                 search,
-                genderId,
-                sortId,
+                movieGenderId,
+                movieSortId,
                 setPage,
                 setMovies,
                 setTotalPage

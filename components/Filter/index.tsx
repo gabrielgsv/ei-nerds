@@ -1,11 +1,12 @@
+import FilterFormMovie from "./Form/FilterFormMovie";
+import FilterFormSeries from "./Form/FilterFormSeries";
 import FilterDialog from "./FilterDialog";
-import FilterForm from "./Form";
 
-export default function Filter() {
+export default function Filter({ isSeries }: { isSeries?: boolean }) {
   return (
     <>
       <FilterDialog>
-        <FilterForm />
+        {isSeries ? <FilterFormSeries /> : <FilterFormMovie />}
       </FilterDialog>
     </>
   );

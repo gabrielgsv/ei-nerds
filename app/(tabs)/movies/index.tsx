@@ -1,9 +1,9 @@
 import { Dimensions } from "react-native";
 import { XStack } from "tamagui";
 
-import FilterButton from "../../../components/Filter";
+import Filter from "../../../components/Filter";
 import Header from "../../../components/Header";
-import List from "../../../components/List";
+import ListMovie from "../../../components/List/ListMovie";
 import SearchInput from "../../../components/SearchInput";
 
 export default function Movies() {
@@ -19,11 +19,11 @@ export default function Movies() {
       <Header title="Filmes" />
 
       <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
-        <FilterButton />
+        <Filter />
         <SearchInput size="$3" />
       </XStack>
 
-      <List getNumColumns={getNumColumns} />
+      <ListMovie getNumColumns={getNumColumns} />
     </>
   );
 }

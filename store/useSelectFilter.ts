@@ -1,29 +1,37 @@
 import { create } from "zustand";
 
 interface SelectFilter {
-  genderId: string | null;
-  sortId: string | null;
-  filteredMovie: boolean;
-  setGenderId: (value: string) => void;
-  setSortId: (value: string) => void;
-  setFilteredMovie: (value: boolean) => void;
+  movieGenderId: string | null;
+  movieSortId: string | null;
+  seriesGenderId: string | null;
+  seriesSortId: string | null;
+  setMovieGenderId: (value: string) => void;
+  setMovieSortId: (value: string) => void;
+  setSeriesGenderId: (value: string) => void;
+  setSeriesSortId: (value: string) => void;
 }
 
 const useSelectFilter = create<SelectFilter>()((set) => ({
-  genderId: null,
-  sortId: null,
-  filteredMovie: false,
-  setGenderId: (value) =>
+  movieGenderId: null,
+  movieSortId: null,
+  seriesGenderId: null,
+  seriesSortId: null,
+
+  setMovieGenderId: (value) =>
     set(() => ({
-      genderId: value,
+      movieGenderId: value,
     })),
-  setSortId: (value) =>
+  setMovieSortId: (value) =>
     set(() => ({
-      sortId: value,
+      movieSortId: value,
     })),
-  setFilteredMovie: (value) =>
+  setSeriesGenderId: (value) =>
     set(() => ({
-      filteredMovie: value,
+      seriesGenderId: value,
+    })),
+  setSeriesSortId: (value) =>
+    set(() => ({
+      seriesSortId: value,
     })),
 }));
 

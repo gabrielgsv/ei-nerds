@@ -1,14 +1,14 @@
 import { SelectType } from "../../../store/useSelectContent";
 import { getPopular } from "../../service";
 
-export function getMovies(
+export function getSeries(
   newPage: number,
   totalPage: number,
   search: string,
   movieGenderId: string,
   movieSortId: string,
   setPage: (number) => void,
-  setMovies: (value: SelectType[], previus?: boolean) => void,
+  setSeries: (value: SelectType[], previus?: boolean) => void,
   setTotalPage: (number) => void
 ) {
   if (newPage > totalPage) return;
@@ -17,14 +17,14 @@ export function getMovies(
     newPage,
     search,
     "discover",
-    "movie",
+    "tv",
     movieGenderId,
     movieSortId
   ).then((res) => {
     if (search.length > 0 && newPage === 1) {
-      setMovies(res.results);
+      setSeries(res.results);
     } else {
-      setMovies(res.results, true);
+      setSeries(res.results, true);
     }
     setTotalPage(res.total_pages);
   });
