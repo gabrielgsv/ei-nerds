@@ -13,19 +13,14 @@ export function getMovies(
 ) {
   if (newPage > totalPage) return;
   setPage(newPage);
-  getPopular(
-    newPage,
-    search,
-    "discover",
-    "movie",
-    movieGenderId,
-    movieSortId
-  ).then((res) => {
-    if (search.length > 0 && newPage === 1) {
-      setMovies(res.results);
-    } else {
-      setMovies(res.results, true);
+  getPopular(newPage, search, "movie", movieGenderId, movieSortId).then(
+    (res) => {
+      if (search.length > 0 && newPage === 1) {
+        setMovies(res.results);
+      } else {
+        setMovies(res.results, true);
+      }
+      setTotalPage(res.total_pages);
     }
-    setTotalPage(res.total_pages);
-  });
+  );
 }

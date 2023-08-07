@@ -4,11 +4,10 @@ export function getPopular(
   page: number,
   search: string,
   urlName: string,
-  sort: string,
   movieGenderId: string | null,
   movieSortId: string | null
 ) {
-  const url = search.length > 0 ? `/search/${urlName}` : `/${urlName}/${sort}`;
+  const url = search.length > 0 ? `/search/${urlName}` : `/discover/${urlName}`;
   return api
     .get(url, {
       params: {
@@ -17,7 +16,9 @@ export function getPopular(
         language: "pt-BR",
         page,
         query: search,
-        sort_by: movieSortId || "popularity.desc",
+        sort_by:
+          movieSortId ||
+          (urlName === "tv" ? "vote_count.desc" : "popularity.desc"),
         with_genres: movieGenderId,
       },
     })

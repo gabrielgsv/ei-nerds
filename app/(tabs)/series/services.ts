@@ -13,14 +13,7 @@ export function getSeries(
 ) {
   if (newPage > totalPage) return;
   setPage(newPage);
-  getPopular(
-    newPage,
-    search,
-    "discover",
-    "tv",
-    movieGenderId,
-    movieSortId
-  ).then((res) => {
+  getPopular(newPage, search, "tv", movieGenderId, movieSortId).then((res) => {
     if (search.length > 0 && newPage === 1) {
       setSeries(res.results);
     } else {

@@ -4,7 +4,7 @@ import { XStack } from "tamagui";
 import Filter from "../../../components/Filter";
 import Header from "../../../components/Header";
 import ListSeries from "../../../components/List/ListSeries";
-import SearchInput from "../../../components/SearchInput";
+import SearchSeries from "../../../components/Search/SearchSeries";
 
 export default function Series() {
   const { width } = Dimensions.get("window");
@@ -17,9 +17,9 @@ export default function Series() {
   return (
     <>
       <Header title="Séries" />
-      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
+      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$4">
         <Filter isSeries />
-        <SearchInput size="$3" />
+        <SearchSeries size="$3" />
       </XStack>
 
       <ListSeries getNumColumns={getNumColumns} />

@@ -4,7 +4,7 @@ import { XStack } from "tamagui";
 import Filter from "../../../components/Filter";
 import Header from "../../../components/Header";
 import ListMovie from "../../../components/List/ListMovie";
-import SearchInput from "../../../components/SearchInput";
+import SearchMovie from "../../../components/Search/SearchMovie";
 
 export default function Movies() {
   const { width } = Dimensions.get("window");
@@ -18,9 +18,9 @@ export default function Movies() {
     <>
       <Header title="Filmes" />
 
-      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$7">
+      <XStack alignItems="center" space="$2" my="$3" h="$4" mx="$4">
         <Filter />
-        <SearchInput size="$3" />
+        <SearchMovie size="$3" />
       </XStack>
 
       <ListMovie getNumColumns={getNumColumns} />

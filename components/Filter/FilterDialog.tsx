@@ -17,7 +17,7 @@ export default function FilterDialog({ children }: FilterDialogProps) {
       }}
     >
       <Dialog.Trigger asChild>
-        <Button circular icon={Filter} />
+        <Button circular icon={Filter} bg="$gray7" />
       </Dialog.Trigger>
 
       <Adapt when="sm" platform="touch">
