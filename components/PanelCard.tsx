@@ -30,7 +30,7 @@ export default function PanelCard({ item }: { item: SelectType }) {
             resizeMode="contain"
             alignSelf="center"
             width={150}
-            height={200}
+            height={205}
             borderRadius={20}
             source={{
               uri: `${API_IMAGE_URL}/${item.poster_path}`,

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "popularity.desc",
+    "name": "Popularidade"
+  },
+  {
+    "id": "revenue.desc",
+    "name": "Receita"
+  },
+  {
+    "id": "primary_release_date.desc",
+    "name": "Lançamento"
+  },
+  {
+    "id": "vote_average.desc",
+    "name": "Nota de usuário"
+  },
+  {
+    "id": "vote_count.desc",
+    "name": "Quantidade de votos"
+  }
+]
