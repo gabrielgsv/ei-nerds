@@ -1,43 +1,35 @@
-# Tamagui Expo Template
-###### This is a community template
+# Ei Nerds
 
-<p align="center">
-  <img src="./assets/icon.png" alt="Tamagui Icon"/>
-</p>
+**Ei Nerds** is your ultimate companion for discovering the best movies and TV shows of the moment. With Ei Nerds, you can easily explore top-rated films and series, check critics' reviews and ratings, and find out which streaming service you can watch them on. Whether you're a cinephile or a binge-watcher, Ei Nerds has got you covered with up-to-date information on what's trending in the entertainment world.
 
-<div align="center">
-  <a target="_blank" href="https://expo.dev/%40ivopr/TET?serviceType=classic&distribution=expo-go&releaseChannel=default">
-      <img src="https://img.shields.io/badge/Open%20in%20Expo%20Go-4630EB.svg?style=flat-square&logo=EXPO&labelColor=f3f3f3&logoColor=000" alt="Open in Expo Go"/>
-    </a>
-</div>
+## Features
+- Discover top-rated movies and TV shows
+- Check critics' reviews and ratings
+- Find out which streaming service has the content you want to watch
 
-## Quick Start
-Just run the following, changing `youprojectname` to the name of your project.
+## Installation
+To get started with Ei Nerds, clone the repository and install the necessary dependencies:
+
+```bash
+git clone https://github.com/gabrielgsv/ei-nerds.git
+cd ei-nerds
+npm install
 ```
-npx create-expo-app yourappname -t tamagui-expo-template --no-install
-cd yourappname
-yarn install
+
+## Usage
+Run the following command to start the app:
+
+```bash
+npm start
 ```
-If you have [Expo Go](https://expo.dev/client) app installed, just start your new app with `yarn start`, if not, create your own [Development Client](https://docs.expo.dev/development/build/)
 
-## What you get
-This is a starter template for [Expo](https://expo.dev) using [Tamagui](https://tamagui.dev).
-In this template you get out of the box:
-- Semantic Release already configured with everything you might want
-- Expo Router up and running
-- Tamagui, a nice and modern way of building your UIs
-- ESLint and Prettier configurations
+## Download
+Click the button below to download the latest release:
 
-## What you don't get
-- Expo Web support (for this, go to the [Official Tamagui Starter](https://github.com/tamagui/tamagui))
-- i18n
-- Global State management
+[![Download Release](https://img.shields.io/badge/Download-Release-brightgreen)](https://github.com/gabrielgsv/ei-nerds/releases/tag/LTS)
 
-## If you want to...
-1. You can build your own dev client with `eas build -p android --profile development`
-1. Develop in WSL, use the `yarn wsl` command, else `yarn start` is your default choice.
+## Contributing
+We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.
 
-## Troubleshooting
-### I'm on WSL but my app doesn't connect
-WSL2 runs inside it's own container, so it doesn't share the same IPv4 and port status as your host machine, you might need [this](https://gist.github.com/ivopr/64f974e632b7edcbe1f5e58b91e31598)
-
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
