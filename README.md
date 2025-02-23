@@ -7,6 +7,11 @@
 - Check critics' reviews and ratings
 - Find out which streaming service has the content you want to watch
 
+## Download
+Click the button below to download the latest release:
+
+<a href="https://github.com/gabrielgsv/ei-nerds/releases/tag/LTS"> <img src="https://img.shields.io/badge/Download-Release-brightgreen?style=for-the-badge" alt="Download Release"> </a>
+
 ## Installation
 To get started with Ei Nerds, clone the repository and install the necessary dependencies:
 
@@ -22,14 +27,6 @@ Run the following command to start the app:
 ```bash
 npm start
 ```
-
-## Download
-Click the button below to download the latest release:
-
-[![Download Release](https://img.shields.io/badge/Download-Release-brightgreen)](https://github.com/gabrielgsv/ei-nerds/releases/tag/LTS)
-
-## Contributing
-We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) to get started.
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
